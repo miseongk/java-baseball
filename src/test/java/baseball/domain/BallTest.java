@@ -23,4 +23,11 @@ class BallTest {
         int ballCount = ball.getBallCount(ball.getBall(), List.of(1, 3, 2));
         assertThat(ballCount).isEqualTo(2);
     }
+
+    @DisplayName("스트라이크 개수가 1이여야 한다.")
+    @Test
+    void getStrikeCount() {
+        int ballCount = ball.getStrikeCount(ball.getBall(), List.of(1, 3, 2));
+        assertThat(ballCount).isEqualTo(1);
+    }
 }
