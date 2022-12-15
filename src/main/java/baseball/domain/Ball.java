@@ -28,4 +28,16 @@ public class Ball {
         return ballCount;
     }
 
+    public int getStrikeCount(List<Integer> ball, List<Integer> userBall) {
+        int strikeCount = 0;
+
+        for (int i = 0; i < BALL_SIZE; i++) {
+            if (ball.get(i).equals(userBall.get(i))) {
+                strikeCount++;
+            }
+        }
+
+        return strikeCount;
+    }
+
 }
