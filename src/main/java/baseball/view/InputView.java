@@ -20,4 +20,13 @@ public class InputView {
 
         return Integer.parseInt(number);
     }
+
+    public int inputRetryCommand() {
+        String retryCommand = Console.readLine();
+        if (validation.isInteger(retryCommand)) {
+            validation.validateCommand(retryCommand);
+        }
+
+        return Integer.parseInt(retryCommand);
+    }
 }
