@@ -6,7 +6,7 @@ public class Ball {
 
     private final static int BALL_SIZE = 3;
 
-    private List<Integer> ball;
+    private final List<Integer> ball;
 
     public Ball(List<Integer> ball) {
         this.ball = ball;
@@ -16,11 +16,11 @@ public class Ball {
         return this.ball;
     }
 
-    public int getBallCount(List<Integer> ball, List<Integer> userBall) {
+    public int getBallCount(List<Integer> userBall) {
         int ballCount = 0;
 
         for (int i = 0; i < BALL_SIZE; i++) {
-            if (ball.contains(userBall.get(i)) && !ball.get(i).equals(userBall.get(i))) {
+            if (this.getBall().contains(userBall.get(i)) && !this.getBall().get(i).equals(userBall.get(i))) {
                 ballCount++;
             }
         }
@@ -28,11 +28,11 @@ public class Ball {
         return ballCount;
     }
 
-    public int getStrikeCount(List<Integer> ball, List<Integer> userBall) {
+    public int getStrikeCount(List<Integer> userBall) {
         int strikeCount = 0;
 
         for (int i = 0; i < BALL_SIZE; i++) {
-            if (ball.get(i).equals(userBall.get(i))) {
+            if (this.getBall().get(i).equals(userBall.get(i))) {
                 strikeCount++;
             }
         }
