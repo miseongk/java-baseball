@@ -16,18 +16,22 @@ public class BaseballGame {
     private final OutputView output;
     private final BallGenerator ballGenerator;
     private Ball ball;
+    private boolean isGoing;
 
     public BaseballGame() {
         this.input = new InputView();
         this.output = new OutputView();
         this.ballGenerator = new BallGenerator();
+        this.isGoing = true;
     }
 
     public void play() {
         output.printStartGameMessage();
         ball = ballGenerator.generate();
-        int inputNumber = inputNumber();
-        getResult(inputNumber);
+        while (isGoing) {
+            int inputNumber = inputNumber();
+            getResult(inputNumber);
+        }
     }
 
     private int inputNumber() {
@@ -44,8 +48,7 @@ public class BaseballGame {
         output.printResult(ballCount, strikeCount);
         if (isRight(strikeCount)) {
             output.printCorrectNumberMessage();
-            output.printRetryGameMessage();
-            input.inputRetryCommand();
+            askRetryGame();
         }
     }
 
@@ -62,5 +65,21 @@ public class BaseballGame {
 
     private boolean isRight(int strikeCount) {
         return strikeCount == BALL_SIZE;
+    }
+
+    private void askRetryGame() {
+        output.printRetryGameMessage();
+        int retryCommand = input.inputRetryCommand();
+
+        if (retryCommand == 1) {
+            restart();
+        }
+        if (retryCommand == 2) {
+            isGoing = false;
+        }
+    }
+
+    private void restart() {
+        ball = ballGenerator.generate();
     }
 }
